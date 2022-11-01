@@ -12,6 +12,8 @@ import models.user_models as cli
 import models.agenda_models as agend
 
 
+
+
 # Configs
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -133,12 +135,12 @@ def agendar_servico():
 
     if request.method == "POST":
         data = request.form['calendario_data']
-        hora = request.form['calendario_hora']
         nome_servico = request.form['nome_servico']
 
         #tratamento da data e hora
-        datetime_str = f"{data} {hora}"
-        datetime_object = datetime.strptime(datetime_str, '%d/%m/%Y %H:%M:%S')
+        data = data.replace("T"," ")
+        data = data.replace("-","/")
+        datetime_object = datetime.strptime(data, '%Y/%m/%d %H:%M')
 
         novo_agendamento = agend.adicionar_agendamento(username, email, telefone, datetime_object, nome_servico)
 
