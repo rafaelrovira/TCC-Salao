@@ -131,3 +131,11 @@ height: 100%;
 .calendario_data{
   margin-left: 5%;
 }
+
+section{
+  padding-left:70px;
+}
+
+.main-menu:hover + section{
+  padding-left: 260px;
+}

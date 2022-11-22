@@ -45,16 +45,6 @@
                 </a>
             </li>
         </ul>
-        <ul class="consultar_users">
-            <li>
-                <a href="{{url_for('consultar_user')}}">
-                     <i class="fa fa-search fa-2x"></i>
-                    <span class="nav-text">
-                        Consultar usuários
-                    </span>
-                </a>
-            </li>  
-        </ul>
         <ul class="logout">
             <li>
                <a href="{{url_for('logout')}}">
@@ -65,10 +55,35 @@
                 </a>
             </li>  
         </ul>
-
+        <ul class="consultar_users">
+            <li>
+               <a href="{{url_for('consultar_user')}}">
+                     <i class="fa fa-search fa-2x"></i>
+                    <span class="nav-text">
+                        Consultar usuários
+                    </span>
+                </a>
+            </li>  
+        </ul>
     </nav>
+    <section class="main-section" id="Introduction">
+        <p> Teste de consulta de dados básicos de usuário via e-mail <p>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        {{ form.email }}
+        {{ form.submit }}
+    </form>
+
+    {% if flag %}
+        <p>username : {{ username }}</p>
+        <p>email : {{ email }}</p>
+        <p>telefone : {{ telefone }}</p>
+    {% else %}
+        <p></p>
+    {% endif %}
+
+    </section>
+
 </body>
 
-
-</body>
 </html>

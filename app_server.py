@@ -8,7 +8,7 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 # models
-import models.user_models as cli
+import models.user_models as usr
 import models.agenda_models as agend
 
 
@@ -58,6 +58,7 @@ class Cliente(db.Model, UserMixin):
     email = db.Column(db.String(200),   nullable=False)
     telefone = db.Column(db.String(30), nullable=False)
 
+
 # Classe para criar a table agenda
 class Agenda(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -95,6 +96,11 @@ class LoginForm(FlaskForm):
     password = PasswordField(validators=[InputRequired(), Length(
         min=4, max=80)], render_kw={"placeholder": ""})
     submit = SubmitField("Login")
+
+
+class ConsultaForm(FlaskForm):
+    email = StringField(validators=[InputRequired()], render_kw={"placeholder": "E-mail"})
+    submit = SubmitField("Consultar")
 
 
 
@@ -158,7 +164,7 @@ def register():
         form_telefone = form.telefone.data
         hashed_password = bcrypt.generate_password_hash(form_password)
         # cria o usuário
-        new_user = cli.adicionar_user(
+        new_user = usr.adicionar_user(
             form_name, hashed_password, form_email, form_telefone)
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
@@ -175,6 +181,25 @@ def logout():
 @login_required
 def profile():
     return render_template('profile.html')
+
+
+@app.route('/consulta_user', methods=['GET', 'POST'])
+@login_required
+def consultar_user():
+    form = ConsultaForm()
+    if form.validate_on_submit():
+        form_email = form.email.data
+        dados_user = usr.consultar_user(form_email)
+        username = dados_user.username
+        email = dados_user.email
+        telefone = dados_user.telefone
+        if username:
+            flag = True
+
+        return render_template('consulta_user.html', form=form, username=username, email=email, telefone=telefone, flag=flag)
+    return render_template('consulta_user.html', form=form)
+
+
 
 
 # Main
