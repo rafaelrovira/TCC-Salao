@@ -39,25 +39,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(200),   nullable=False)
     telefone = db.Column(db.String(30), nullable=False)
-
-
-# Classe para criar a table funcionário
-class Funcionario(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), nullable=False, unique=True)
-    password = db.Column(db.String(80), nullable=False)
-    email = db.Column(db.String(200),   nullable=False)
-    telefone = db.Column(db.String(30), nullable=False)
-
-
-# Classe para criar a table cliente
-class Cliente(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), nullable=False, unique=True)
-    password = db.Column(db.String(80), nullable=False)
-    email = db.Column(db.String(200),   nullable=False)
-    telefone = db.Column(db.String(30), nullable=False)
-
+    level = db.Column(db.String(30),    nullable=False)
 
 # Classe para criar a table agenda
 class Agenda(db.Model, UserMixin):
@@ -68,9 +50,14 @@ class Agenda(db.Model, UserMixin):
     telefone = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(200),   nullable=False)
 
-
 # Cria o database
 db.create_all()
+
+# Cria o primeiro administrador
+#admin_password = bcrypt.generate_password_hash('admin')
+#admin = User(username='admin', password=admin_password, email='admin@example.com', telefone='1195448652', level='admin')
+#db.session.add(admin)
+#db.session.commit()
 
 
 # Classe para os formulários de usuário
@@ -103,7 +90,6 @@ class ConsultaForm(FlaskForm):
     submit = SubmitField("Consultar")
 
 
-
 # Rotas
 @app.route('/')
 def home():
@@ -117,8 +103,14 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
-                login_user(user)
-                return redirect(url_for('dashboard'))
+                if user.level == "client":
+                    login_user(user)
+                    return redirect(url_for('dashboard'))
+        
+                if user.level == "admin":
+                    login_user(user)
+                    return redirect(url_for('dashboard'))
+
         else:
             return("Usuário incorreto")
     return render_template('login.html', form=form)
@@ -127,7 +119,12 @@ def login():
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+
+    if current_user.level == "client":
+        return render_template('dashboard.html')
+    
+    if current_user.level == "admin":
+        return render_template('dashboard_admin.html')
 
 
 @app.route('/agendar_servico', methods=['GET', 'POST'])
@@ -154,20 +151,44 @@ def agendar_servico():
     return render_template('agendar_servico.html')
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register_client', methods=['GET', 'POST'])
 def register():
+    form_client = RegisterForm()
+    if form_client.validate_on_submit():   
+        form_name = form_client.username.data
+        form_password = form_client.password.data
+        form_email = form_client.email.data
+        form_telefone = form_client.telefone.data
+        hashed_password = bcrypt.generate_password_hash(form_password)
+
+        # cria o usuário
+        new_user = usr.adicionar_user(form_name, hashed_password, form_email, form_telefone, level="client")
+        return redirect(url_for('login'))
+    
+    return render_template('register.html', form=form_client)
+
+@app.route('/register_admin', methods=['GET', 'POST'])
+def admin_register():
+     # Verificar se o admin está autenticado e tem permissão de acesso
     form = RegisterForm()
-    if form.validate_on_submit():
+    if form.validate_on_submit():   
         form_name = form.username.data
         form_password = form.password.data
         form_email = form.email.data
         form_telefone = form.telefone.data
         hashed_password = bcrypt.generate_password_hash(form_password)
-        # cria o usuário
-        new_user = usr.adicionar_user(
-            form_name, hashed_password, form_email, form_telefone)
-        return redirect(url_for('login'))
-    return render_template('register.html', form=form)
+        user = User.query.filter_by(username=form.username.data).first()
+
+        # cria o admin
+        try:
+            if user.level == "admin":
+                new_admin = usr.adicionar_user(
+                form_name, hashed_password, form_email, form_telefone, level='admin')
+                return redirect(url_for('login'))
+        except AttributeError:
+            return("Acesso negado, faça login com um usuário administrador")
+        
+    return render_template('register_admin.html', form=form)
 
 
 @app.route('/logout', methods=['GET', 'POST'])
@@ -180,7 +201,11 @@ def logout():
 @app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    return render_template('profile.html')
+    if current_user.level == "client":
+        return render_template('profile.html')
+    
+    if current_user.level == "admin":
+        return render_template('profile_admin.html')
 
 
 @app.route('/consulta_user', methods=['GET', 'POST'])
@@ -199,9 +224,21 @@ def consultar_user():
         return render_template('consulta_user.html', form=form, username=username, email=email, telefone=telefone, flag=flag)
     return render_template('consulta_user.html', form=form)
 
+@app.route('/deletar_user', methods=['GET', 'POST'])
+@login_required
+def deletar_user():
+
+    if current_user.level == "admin":
+        form_delete = ConsultaForm()
+        if form_delete.validate_on_submit():
+            email = form_delete.email.data
+            usr.deleta_user(email)
+            return("Usuário deletado com sucesso")
+    else:
+        return("Você não tem permissão para deletar usuários.")
 
 
 
 # Main
 if __name__ == '__main__':
-    app.run(debug=True, port=8081)
+     app.run(debug=True, port=8081)

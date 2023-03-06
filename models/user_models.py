@@ -3,9 +3,8 @@ from app_server import User, db
 
 
 # Adicionar usuário
-def adicionar_user(username, password, email, telefone):
-    new_user = User(username=username, password=password,
-                    email=email, telefone=telefone)
+def adicionar_user(username, password, email, telefone, level):
+    new_user = User(username=username, password=password, email=email, telefone=telefone, level=level)
     db.session.add(new_user)
     db.session.commit()
     print("Usuário criado com sucesso !")
@@ -44,9 +43,12 @@ def deleta_user(email):
     if objeto != 'Nenhum usuário encontrado':
         id = objeto.id
         user = User.query.get(id)
-        user.query.filter_by(id=id).delete()
-        db.session.commit()
-        print("Usuário deletado com sucesso")
-        return ("Usuário deletado com sucesso")
+        if user.level == "admin":
+            return ("Não é possível deletar administrador(por enquanto)")
+        else:
+            user.query.filter_by(id=id).delete()
+            db.session.commit()
+            print("Usuário deletado com sucesso")
+            return ("Usuário deletado com sucesso")
     else:
         print("Usuário não encontrado")
