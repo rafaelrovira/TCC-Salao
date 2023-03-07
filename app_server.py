@@ -7,6 +7,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
+from datetime import date
 # models
 import models.user_models as usr
 import models.agenda_models as agend
@@ -159,7 +160,6 @@ def agendar_servico():
 
 
 @app.route('/register_client', methods=['GET', 'POST'])
-
 def register():
     form_client = RegisterForm()
     if form_client.validate_on_submit():   
@@ -252,6 +252,24 @@ def deletar_user():
     else:
         return("Você não tem permissão para deletar usuários.")
     return render_template('deletar_user.html', form=form_delete)
+
+@app.route('/usuarios')
+@login_required
+def list_users():
+    if current_user.level == "client":
+        return ("Você não tem permissão")
+    
+    if current_user.level == "admin":
+        users = User.query.all()
+        return render_template('users.html', users=users)
+
+
+@app.route('/agendamentos_dia')
+@login_required
+def list_agendamentos_dia():
+    hoje = datetime.today().strftime('%Y-%m-%d')
+    agendamentos = Agenda.query.filter(Agenda.data >= datetime.combine(date.today(), datetime.min.time()), Agenda.data <= datetime.combine(date.today(), datetime.max.time())).all()
+    return render_template('agendamentos_dia.html', agendamentos=agendamentos)
 
 
 

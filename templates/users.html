@@ -89,24 +89,33 @@
             </li>  
         </ul>
     </nav>
-    <section class="main-section" id="Introduction">
-        <p> Teste de DELETE de usuários <p>
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        {{ form.email }}
-        {{ form.submit }}
-    </form>
 
-    {% if flag %}
-        <p>username : {{ username }}</p>
-        <p>email : {{ email }}</p>
-        <p>telefone : {{ telefone }}</p>
-    {% else %}
-        <p></p>
-    {% endif %}
-
-    </section>
+        {% block content %}
+        <h1>Lista de Usuários</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome de Usuário</th>
+              <th>E-mail</th>
+              <th>Administrador</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+              <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ 'Sim' if user.level == "admin" else 'Não' }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endblock %}
 
 </body>
-
 </html>
+
+
+

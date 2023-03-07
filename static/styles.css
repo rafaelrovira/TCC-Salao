@@ -139,3 +139,45 @@ section{
 .main-menu:hover + section{
   padding-left: 260px;
 }
+
+/* Defina a fonte e as cores para a tabela e seus elementos */
+table {
+  font-family: Arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+/* Estilize a cabeçalho da tabela */
+thead {
+  background-color: #F5F5F5;
+}
+
+th {
+  background-color: #0E1722;
+  color: #FFF;
+}
+
+/* Estilize as linhas da tabela */
+tr:nth-child(even) {
+  background-color: #F2F2F2;
+}
+
+/* Estilize as colunas da tabela */
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Estilize o título da página */
+h1 {
+  font-size: 32px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}

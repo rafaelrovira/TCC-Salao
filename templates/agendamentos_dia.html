@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="/agendamentos_dia">
+                <a href="/agendamentos">
                     <i class="fa fa-calendar fa-2x"></i>
                     <span class="nav-text">
                         Agendamentos do dia
@@ -89,24 +89,39 @@
             </li>  
         </ul>
     </nav>
-    <section class="main-section" id="Introduction">
-        <p> Teste de DELETE de usuários <p>
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        {{ form.email }}
-        {{ form.submit }}
-    </form>
 
-    {% if flag %}
-        <p>username : {{ username }}</p>
-        <p>email : {{ email }}</p>
-        <p>telefone : {{ telefone }}</p>
-    {% else %}
-        <p></p>
-    {% endif %}
-
-    </section>
+        {% block content %}
+        <h1>Agendamentos do dia</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome de Usuário</th>
+              <th>E-mail</th>
+              <th>Telefone</th>
+              <th>Dia</th>
+              <th>Horário</th>
+              <th>Serviço</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for agendamento in agendamentos %}
+              <tr>
+                <td>{{ agendamento.id }}</td>
+                <td>{{ agendamento.username }}</td>
+                <td>{{ agendamento.email }}</td>
+                <td>{{ agendamento.telefone }}</td>
+                <td>{{ agendamento.data.strftime('%d-%m-%Y') }}</td>
+                <td>{{ agendamento.data.strftime('%H:%M') }}</td>
+                <td>{{ agendamento.servico }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endblock %}
 
 </body>
-
 </html>
+
+
+
