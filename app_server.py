@@ -90,6 +90,11 @@ class ConsultaForm(FlaskForm):
     submit = SubmitField("Consultar")
 
 
+class DeleteForm(FlaskForm):
+    email = StringField(validators=[InputRequired()], render_kw={"placeholder": "E-mail"})
+    submit = SubmitField("Deletar")
+
+
 # Rotas
 @app.route('/')
 def home():
@@ -146,12 +151,15 @@ def agendar_servico():
         datetime_object = datetime.strptime(data, '%Y/%m/%d %H:%M')
 
         novo_agendamento = agend.adicionar_agendamento(username, email, telefone, datetime_object, nome_servico)
-
-
-    return render_template('agendar_servico.html')
+    
+    if current_user.level == "admin":
+        return render_template('agendar_servico_admin.html')
+    else:
+        return render_template('agendar_servico.html')
 
 
 @app.route('/register_client', methods=['GET', 'POST'])
+
 def register():
     form_client = RegisterForm()
     if form_client.validate_on_submit():   
@@ -168,7 +176,14 @@ def register():
     return render_template('register.html', form=form_client)
 
 @app.route('/register_admin', methods=['GET', 'POST'])
+@login_required
 def admin_register():
+    
+    #Validação pra ver se o usuário é admin
+    user_level = current_user.level
+    if user_level != "admin":
+        return("Acesso Negado")
+    
      # Verificar se o admin está autenticado e tem permissão de acesso
     form = RegisterForm()
     if form.validate_on_submit():   
@@ -177,11 +192,11 @@ def admin_register():
         form_email = form.email.data
         form_telefone = form.telefone.data
         hashed_password = bcrypt.generate_password_hash(form_password)
-        user = User.query.filter_by(username=form.username.data).first()
+
 
         # cria o admin
         try:
-            if user.level == "admin":
+            if current_user.level == "admin":
                 new_admin = usr.adicionar_user(
                 form_name, hashed_password, form_email, form_telefone, level='admin')
                 return redirect(url_for('login'))
@@ -229,13 +244,14 @@ def consultar_user():
 def deletar_user():
 
     if current_user.level == "admin":
-        form_delete = ConsultaForm()
+        form_delete = DeleteForm()
         if form_delete.validate_on_submit():
             email = form_delete.email.data
             usr.deleta_user(email)
             return("Usuário deletado com sucesso")
     else:
         return("Você não tem permissão para deletar usuários.")
+    return render_template('deletar_user.html', form=form_delete)
 
 
 
