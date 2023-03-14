@@ -52,3 +52,7 @@ def deleta_user(email):
             return ("Usuário deletado com sucesso")
     else:
         print("Usuário não encontrado")
+
+# Deleta administrador com o token
+def deleta_admin(email, token):
+    pass

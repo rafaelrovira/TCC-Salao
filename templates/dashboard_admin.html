@@ -1,94 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css" crossorigin="anonymous">
-    <title>Dashboard Admin</title>
-</head>
-<body>
-    <body>
-        <div class="area"></div>
-        <nav class="main-menu">
-        <ul>
-            <li>
-                <a href="/dashboard">
-                    <i class="fa fa-home fa-2x"></i>
-                    <span class="nav-text">
-                        Dashboard
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/profile">
-                    <i class="fa fa-user fa-2x"></i>
-                    <span class="nav-text">
-                        Perfil
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/usuarios">
-                    <i class="fa fa-users fa-2x"></i>
-                    <span class="nav-text">
-                        Usuários
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/deletar_user">
-                    <i class="fa fa-ban" aria-hidden="true"></i>
-                    <span class="nav-text">
-                        Deletar Usuários
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/agendamentos_dia">
-                    <i class="fa fa-calendar fa-2x"></i>
-                    <span class="nav-text">
-                        Agendamentos do dia
-                    </span>
-                </a>
-            </li>
-          <li>
-                <a href="/agendar_servico">
-                    <i class="fa fa-clock-o fa-2x"></i>
-                    <span class="nav-text">
-                        Marcar Horario
-                    </span>
-                </a>
-            </li>
-          <li>
-                <a href="#">
-                    <i class="fa fa-calendar fa-2x"></i>
-                    <span class="nav-text">
-                        Olhar agenda
-                    </span>
-                </a>
-            </li>
-        </ul>
-        <ul class="consultar_users">
-            <li>
-                <a href="{{url_for('consultar_user')}}">
-                     <i class="fa fa-search fa-2x"></i>
-                    <span class="nav-text">
-                        Consultar usuários
-                    </span>
-                </a>
-            </li>  
-        </ul>
-        <ul class="logout">
-            <li>
-               <a href="{{url_for('logout')}}">
-                     <i class="fa fa-power-off fa-2x"></i>
-                    <span class="nav-text">
-                        Logout
-                    </span>
-                </a>
-            </li>  
-        </ul>
-    </nav>
-</body>
-</html>
+{% extends "base_admin.html" %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block title %} 
+{{ super() }}
+{% endblock %}
+
+{% block body_content %}
+{{ super() }}
+{% endblock %}

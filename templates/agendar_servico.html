@@ -1,87 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
-    <title>Dashboard</title>
-</head>
-<body>
-    <body>
-        <div class="area"></div>
-        <nav class="main-menu">
-        <ul>
-            <li>
-                <a href="/dashboard">
-                    <i class="fa fa-home fa-2x"></i>
-                    <span class="nav-text">
-                        Dashboard
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/profile">
-                    <i class="fa fa-user fa-2x"></i>
-                    <span class="nav-text">
-                        Perfil
-                    </span>
-                </a>
-            </li>
-          <li>
-                <a href="#">
-                    <i class="fa fa-clock-o fa-2x"></i>
-                    <span class="nav-text">
-                        Marcar Horario
-                    </span>
-                </a>
-            </li>
-          <li>
-                <a href="#">
-                    <i class="fa fa-calendar fa-2x"></i>
-                    <span class="nav-text">
-                        Olhar agenda
-                    </span>
-                </a>
-            </li>
-        </ul>
-        <ul class="logout">
-            <li>
-               <a href="{{url_for('logout')}}">
-                     <i class="fa fa-power-off fa-2x"></i>
-                    <span class="nav-text">
-                        Logout
-                    </span>
-                </a>
-            </li>  
-        </ul>
-    </nav>
+{% extends "base_client.html" %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block title %} 
+{{ super() }}
+{% endblock %}
+
+{% block body_content %}
+{{ super() }}
+<section>
     <form class="calendario_data" method="POST" action="">
     <p>Serviço: <input type="text" id="nome_servico" value="" required="True" name="nome_servico"/></p>
     <p>Data/Hora: <input type="datetime-local" id="calendario" value="" required="True" name="calendario_data"/></p>
     <!--<p>Hora: <input type="text" id="calendario_hora" value="" required="True" name="calendario_hora"/></p> -->
     <input type="submit" value="Submit">
     </form>
-        
-</body>
-
-<!--
-<script>
-    $(function() {
-        $("#calendario").datepicker({
-            dateFormat: 'dd/mm/yy',
-            dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
-            dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
-            dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
-            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-            monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
-            
-        });
-    });
-    </script>
--->
-
-</html>
+</section>
+    
+{% endblock %}

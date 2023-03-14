@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Administradores</title>
-</head>
-<body>
+{% extends "base_admin.html" %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block title %} 
+{{ super() }}
+{% endblock %}
+
+{% block body_content %}
+{{ super() }}
+<div class="container_admin">
     <h1>Registrar Administradores</h1>
-    
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         {{ form.username }}
@@ -17,6 +20,6 @@
         {{ form.telefone }}
         {{ form.submit }}
     </form>
-    
-</body>
-</html>
+</div>
+{% endblock %}
+

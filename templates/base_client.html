@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% block head %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css" crossorigin="anonymous">
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    {% endblock %}
+    {% block title %}<title>Dashboard</title>{% endblock %}
 </head>
 <body>
     <body>
+        {% block body_content %}
         <div class="area"></div>
         <nav class="main-menu">
         <ul>
@@ -25,30 +28,6 @@
                     <i class="fa fa-user fa-2x"></i>
                     <span class="nav-text">
                         Perfil
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/usuarios">
-                    <i class="fa fa-users fa-2x"></i>
-                    <span class="nav-text">
-                        Usuários
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/deletar_user">
-                    <i class="fa fa-ban" aria-hidden="true"></i>
-                    <span class="nav-text">
-                        Deletar Usuários
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/agendamentos_dia">
-                    <i class="fa fa-calendar fa-2x"></i>
-                    <span class="nav-text">
-                        Agendamentos do dia
                     </span>
                 </a>
             </li>
@@ -90,24 +69,9 @@
             </li>  
         </ul>
     </nav>
-    <section class="main-section" id="Introduction">
-        <p> Teste de consulta de dados básicos de usuário via e-mail <p>
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        {{ form.email }}
-        {{ form.submit }}
-    </form>
-
-    {% if flag %}
-        <p>username : {{ username }}</p>
-        <p>email : {{ email }}</p>
-        <p>telefone : {{ telefone }}</p>
-    {% else %}
-        <p></p>
-    {% endif %}
-
-    </section>
-
+    {% endblock %}
 </body>
 
+
+</body>
 </html>

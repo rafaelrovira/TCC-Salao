@@ -177,8 +177,7 @@ def register():
 
 @app.route('/register_admin', methods=['GET', 'POST'])
 @login_required
-def admin_register():
-    
+def admin_register(): 
     #Validação pra ver se o usuário é admin
     user_level = current_user.level
     if user_level != "admin":
@@ -226,17 +225,21 @@ def profile():
 @app.route('/consulta_user', methods=['GET', 'POST'])
 @login_required
 def consultar_user():
-    form = ConsultaForm()
-    if form.validate_on_submit():
-        form_email = form.email.data
-        dados_user = usr.consultar_user(form_email)
-        username = dados_user.username
-        email = dados_user.email
-        telefone = dados_user.telefone
-        if username:
-            flag = True
 
-        return render_template('consulta_user.html', form=form, username=username, email=email, telefone=telefone, flag=flag)
+    if current_user.level == "client":
+        return ("Você não tem permissão")
+    
+    if current_user.level == "admin":
+        form = ConsultaForm()
+        if form.validate_on_submit():
+            form_email = form.email.data
+            dados_user = usr.consultar_user(form_email)
+            username = dados_user.username
+            email = dados_user.email
+            telefone = dados_user.telefone
+            if username:
+                flag = True
+            return render_template('consulta_user.html', form=form, username=username, email=email, telefone=telefone, flag=flag)   
     return render_template('consulta_user.html', form=form)
 
 @app.route('/deletar_user', methods=['GET', 'POST'])
@@ -247,8 +250,13 @@ def deletar_user():
         form_delete = DeleteForm()
         if form_delete.validate_on_submit():
             email = form_delete.email.data
-            usr.deleta_user(email)
-            return("Usuário deletado com sucesso")
+            # verificar se o user é um administrador
+            dados_user = usr.consultar_user(email)
+            if dados_user.level == "admin":
+                return("Você não pode deletar outro administrador")
+            else:
+                usr.deleta_user(email)
+                return("Usuário deletado com sucesso")
     else:
         return("Você não tem permissão para deletar usuários.")
     return render_template('deletar_user.html', form=form_delete)
@@ -270,6 +278,20 @@ def list_agendamentos_dia():
     hoje = datetime.today().strftime('%Y-%m-%d')
     agendamentos = Agenda.query.filter(Agenda.data >= datetime.combine(date.today(), datetime.min.time()), Agenda.data <= datetime.combine(date.today(), datetime.max.time())).all()
     return render_template('agendamentos_dia.html', agendamentos=agendamentos)
+
+
+@app.route('/agendamentos')
+@login_required
+def list_agendamentos_total():
+
+    if current_user.level == "client":
+        return ("Você não tem permissão")
+    
+    if current_user.level == "admin":
+        users = User.query.all()
+        hoje = datetime.today().strftime('%Y-%m-%d')
+        agendamentos = Agenda.query.all()
+        return render_template('agendamentos_total.html', agendamentos=agendamentos)
 
 
 
