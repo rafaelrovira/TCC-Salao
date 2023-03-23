@@ -275,9 +275,15 @@ def list_users():
 @app.route('/agendamentos_dia')
 @login_required
 def list_agendamentos_dia():
-    hoje = datetime.today().strftime('%Y-%m-%d')
-    agendamentos = Agenda.query.filter(Agenda.data >= datetime.combine(date.today(), datetime.min.time()), Agenda.data <= datetime.combine(date.today(), datetime.max.time())).all()
-    return render_template('agendamentos_dia.html', agendamentos=agendamentos)
+
+    if current_user.level == "client":
+        return ("Você não tem permissão")
+    
+    if current_user.level == "admin":
+        users = User.query.all()
+        hoje = datetime.today().strftime('%Y-%m-%d')
+        agendamentos = Agenda.query.filter(Agenda.data >= datetime.combine(date.today(), datetime.min.time()), Agenda.data <= datetime.combine(date.today(), datetime.max.time())).all()
+        return render_template('agendamentos_dia.html', agendamentos=agendamentos)
 
 
 @app.route('/agendamentos')

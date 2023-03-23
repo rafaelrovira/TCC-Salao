@@ -12,11 +12,41 @@
 {{ super() }}
 <section>
     <form class="calendario_data" method="POST" action="">
-    <p>Serviço: <input type="text" id="nome_servico" value="" required="True" name="nome_servico"/></p>
-    <p>Data/Hora: <input type="datetime-local" id="calendario" value="" required="True" name="calendario_data"/></p>
-    <!--<p>Hora: <input type="text" id="calendario_hora" value="" required="True" name="calendario_hora"/></p> -->
-    <input type="submit" value="Submit">
+      <p>Serviço:
+        <select id="servico" name="nome_servico" required>
+          <option value="">Escolha um serviço</option>
+          <option value="Serviço 1">Corte de Cabelo</option>
+          <option value="Serviço 2">Barba</option>
+          <option value="Serviço 3">Teste</option>
+        </select>
+      </p>
+      <p>Data/Hora:
+        <input type="datetime-local" id="calendario" name="calendario_data" required>
+      </p>
+      <input type="submit" value="Submit">
     </form>
-</section>
-    
+  </section>
+  
+  <script>
+    // definir a data e hora mínima permitida (hoje às 9h)
+    var dataAtual = new Date();
+    var horarioMinimo = "09:00"; // seta o horário minimo
+    if (dataAtual.getHours() >= 9) {
+      dataAtual.setDate(dataAtual.getDate() + 1);
+    }
+    var dataMinima = dataAtual.toISOString().slice(0, 10) + "T" + horarioMinimo;
+    document.getElementById("calendario").setAttribute("min", dataMinima);
+  
+    // definir a data e hora máxima permitida (daqui a 7 dias)
+    var dataMaxima = new Date();
+    dataMaxima.setDate(dataMaxima.getDate() + 7);
+    dataMaxima = dataMaxima.toISOString().slice(0, 16);
+    document.getElementById("calendario").setAttribute("max", dataMaxima);
+  </script>
+
+  
+  
+  
+  
 {% endblock %}
+

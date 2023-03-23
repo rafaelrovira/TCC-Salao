@@ -188,3 +188,58 @@ h1 {
   align-items: center;
   justify-content: center;
 }
+
+.calendario_data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+  font-family: Arial, sans-serif;
+}
+
+.calendario_data label {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.calendario_data input[type="text"],
+.calendario_data input[type="datetime-local"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.calendario_data input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.calendario_data input[type="submit"]:hover {
+  background-color: #0069d9;
+}
+
+.calendario_data select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Desabilitar visualmente as opções de hora desativadas */
+option[disabled] {
+  pointer-events: none;
+  color: #ccc;
+}
+
