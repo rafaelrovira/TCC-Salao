@@ -29,16 +29,16 @@
   </section>
   
   <script>
-    // definir a data e hora mínima permitida (hoje às 9h)
+    // define a data e hora mínima permitida (hoje às 9h)
     var dataAtual = new Date();
     var horarioMinimo = "09:00"; // seta o horário minimo
-    if (dataAtual.getHours() >= 9) {
-      dataAtual.setDate(dataAtual.getDate() + 1);
+    if (dataAtual.getHours() >= 22) { // seta o horário MÁXIMO que poderá ser feito o agendamento, passado isso, será disponibilizar apenas o próximo dia
+      dataAtual.setDate(dataAtual.getDate());
     }
     var dataMinima = dataAtual.toISOString().slice(0, 10) + "T" + horarioMinimo;
     document.getElementById("calendario").setAttribute("min", dataMinima);
   
-    // definir a data e hora máxima permitida (daqui a 7 dias)
+    // define a data e hora máxima permitida (daqui a 7 dias)
     var dataMaxima = new Date();
     dataMaxima.setDate(dataMaxima.getDate() + 7);
     dataMaxima = dataMaxima.toISOString().slice(0, 16);

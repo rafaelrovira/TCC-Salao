@@ -1,2 +1,1 @@
-"admin":
-        users = User.query.al
+agendar_servico_admin
