@@ -5,3 +5,17 @@ def adicionar_agendamento(username, email, telefone, data, servico):
     db.session.commit()
     print("Agendamento criado com sucesso !")
     return ("Agendamento criado com sucesso !")
+
+
+def excluir_agendamento(id_agendamento):
+    from app_server import Agenda, db
+    agendamento = Agenda.query.filter_by(id=id_agendamento).first()
+    if agendamento:
+        db.session.delete(agendamento)
+        db.session.commit()
+        print("Agendamento removido com sucesso !")
+        return ("Agendamento removido com sucesso !")
+    else:
+        print("Agendamento não encontrado")
+        return ("Agendamento não encontrado")
+

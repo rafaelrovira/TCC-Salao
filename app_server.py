@@ -8,6 +8,7 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 from datetime import date
+
 # models
 import models.user_models as usr
 import models.agenda_models as agend
@@ -292,12 +293,25 @@ def list_agendamentos_total():
 
     if current_user.level == "client":
         return ("Você não tem permissão")
-    
+
     if current_user.level == "admin":
-        users = User.query.all()
+        page = request.args.get('page', 1, type=int)
+        per_page = request.args.get('per_page', 10, type=int)
         hoje = datetime.today().strftime('%Y-%m-%d')
-        agendamentos = Agenda.query.all()
+        agendamentos = Agenda.query.paginate(page=page, per_page=per_page)
         return render_template('agendamentos_total.html', agendamentos=agendamentos)
+
+    
+@app.route('/deletar-agendamento/<int:id_agendamento>', methods=['DELETE'])
+@login_required
+def deletar_agendamento(id_agendamento):
+    agendamento = Agenda.query.filter_by(id=id_agendamento).first()
+    if agendamento:
+        db.session.delete(agendamento)
+        db.session.commit()
+        return 'Agendamento removido com sucesso!', 200
+    else:
+        return 'Agendamento não encontrado.', 404
 
 
 

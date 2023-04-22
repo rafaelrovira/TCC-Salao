@@ -25,7 +25,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for agendamento in agendamentos %}
+    {% for agendamento in agendamentos.items %}
       <tr>
         <td>{{ agendamento.id }}</td>
         <td>{{ agendamento.username }}</td>
@@ -34,14 +34,62 @@
         <td>{{ agendamento.data.strftime('%d-%m-%Y') }}</td>
         <td>{{ agendamento.data.strftime('%H:%M') }}</td>
         <td>{{ agendamento.servico }}</td>
+        <td><button class="cancelar-agendamento" data-id="{{ agendamento.id }}"><i class="fa fa-times"></i></button></td>
       </tr>
     {% endfor %}
   </tbody>
 </table>
+
+{% if agendamentos.has_prev or agendamentos.has_next %}
+<div class="pagination">
+  {% if agendamentos.has_prev %}
+    <a href="{{ url_for('list_agendamentos_total', page=agendamentos.prev_num, per_page=agendamentos.per_page) }}" class="pagination-button">&lt; Anterior</a>
+  {% else %}
+    <button class="pagination-button disabled">&lt; Anterior</button>
+  {% endif %}
+
+  {% if agendamentos.has_next %}
+    <a href="{{ url_for('list_agendamentos_total', page=agendamentos.next_num, per_page=agendamentos.per_page) }}" class="pagination-button">Próxima &gt;</a>
+  {% else %}
+    <button class="pagination-button disabled">Próxima &gt;</button>
+  {% endif %}
+</div>
+
+{% endif %}
 {% endblock %}
+
+
+<script>
+  // Seletor para todos os botões de exclusão
+  const cancelarAgendamentoButtons = document.querySelectorAll('.cancelar-agendamento');
+
+  // Função para enviar uma requisição HTTP DELETE para o servidor
+  const deletarAgendamento = (idAgendamento) => {
+      fetch(`/deletar-agendamento/${idAgendamento}`, {
+          method: 'DELETE'
+      })
+      .then(response => response.json())
+      .then(data => {
+          alert('Agendamento removido com sucesso!');
+      })
+      .catch(error => {
+          console.error(error);
+      });
+  };
+
+  // Adiciona um evento de clique a cada botão de exclusão
+  cancelarAgendamentoButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+          const idAgendamento = event.currentTarget.dataset.id;
+          if (confirm("Tem certeza que deseja excluir este agendamento?")) {
+              deletarAgendamento(idAgendamento);
+              // Recarrega a página atual após a exclusão bem-sucedida
+              window.location.reload();
+          }
+      });
+  });
+</script>
+
+
+
 {% endblock %}
-
-
-
-
-
