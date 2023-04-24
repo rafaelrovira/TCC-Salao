@@ -10,28 +10,30 @@
 
 {% block body_content %}
 {{ super() }}
+
 <section>
     <form class="calendario_data" method="POST" action="">
-      <p>Service:</p>
-    <select id="service">
-      <option value="1">Service 1</option>
-      <option value="2">Service 2</option>
-      <option value="3">Service 3</option>
-    </select>
-    <p>Date Time</p>
-    <input type="datetime-local" id="datetime" />
-    <button id="submit">Submit</button>
+      <p>Serviço:
+        <select id="servico" name="nome_servico" required>
+          <option value="">Escolha um serviço</option>
+          <option value="Serviço 1">Corte de Cabelo</option>
+          <option value="Serviço 2">Barba</option>
+          <option value="Serviço 3">Teste</option>
+        </select>
+      </p>
+      <p>Data/Hora:
+        <input type="datetime-local" id="calendario" name="calendario_data" required>
+      </p>
+      <input type="submit" value="Submit">
     </form>
   </section>
   
   <script>
-    
     // define a data e hora mínima permitida (hoje às 9h)
     var dataAtual = new Date();
     var horarioMinimo = "09:00"; // seta o horário minimo
-    if (dataAtual.getHours() >= 22) {     // seta o horário MÁXIMO que poderá ser feito o agendamento (horário local do sistema), 
-                                          //passado isso, será disponibilizado apenas o próximo dia
-      dataAtual.setDate(dataAtual.getDate() + 1);
+    if (dataAtual.getHours() >= 22) { // seta o horário MÁXIMO que poderá ser feito o agendamento, passado isso, será disponibilizar apenas o próximo dia
+      dataAtual.setDate(dataAtual.getDate());
     }
     var dataMinima = dataAtual.toISOString().slice(0, 10) + "T" + horarioMinimo;
     document.getElementById("calendario").setAttribute("min", dataMinima);
@@ -42,8 +44,5 @@
     dataMaxima = dataMaxima.toISOString().slice(0, 16);
     document.getElementById("calendario").setAttribute("max", dataMaxima);
   </script>
-
-  
-  
+    
 {% endblock %}
-

@@ -42,10 +42,13 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(200),   nullable=False)
     telefone = db.Column(db.String(30), nullable=False)
     level = db.Column(db.String(30),    nullable=False)
+    #teste abaixo
+    agendamentos = db.relationship('Agenda', backref='usuario', lazy=True)
 
 # Classe para criar a table agenda
 class Agenda(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     username = db.Column(db.String(20), nullable=False)
     data = db.Column(db.DateTime(200),  nullable=False)
     servico = db.Column(db.String(20), nullable=False)
@@ -152,7 +155,7 @@ def agendar_servico():
         data = data.replace("-","/")
         datetime_object = datetime.strptime(data, '%Y/%m/%d %H:%M')
 
-        novo_agendamento = agend.adicionar_agendamento(username, email, telefone, datetime_object, nome_servico)
+        novo_agendamento = agend.adicionar_agendamento(current_user.id,username, email, telefone, datetime_object, nome_servico)
     
     if current_user.level == "admin":
         return render_template('agendar_servico_admin.html')
@@ -292,7 +295,12 @@ def list_agendamentos_dia():
 def list_agendamentos_total():
 
     if current_user.level == "client":
-        return ("Você não tem permissão")
+        page = request.args.get('page', 1, type=int)
+        per_page = request.args.get('per_page', 10, type=int)
+        hoje = datetime.today().strftime('%Y-%m-%d')
+        agendamentos = Agenda.query.filter_by(user_id=current_user.id).paginate(page=page, per_page=per_page)
+        return render_template('agendamentos_total_client.html', agendamentos=agendamentos)
+        
 
     if current_user.level == "admin":
         page = request.args.get('page', 1, type=int)
