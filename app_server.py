@@ -155,7 +155,7 @@ def agendar_servico():
         data = data.replace("-","/")
         datetime_object = datetime.strptime(data, '%Y/%m/%d %H:%M')
 
-        novo_agendamento = agend.adicionar_agendamento(current_user.id,username, email, telefone, datetime_object, nome_servico)
+        novo_agendamento = agend.adicionar_agendamento(current_user.id, username, email, telefone, datetime_object, nome_servico)
     
     if current_user.level == "admin":
         return render_template('agendar_servico_admin.html')
