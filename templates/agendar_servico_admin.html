@@ -24,7 +24,7 @@
       <p>Data/Hora:
         <input type="datetime-local" id="calendario" name="calendario_data" required>
       </p>
-      <input type="submit" value="Submit">
+      <input type="submit" onclick="" value="Submit">
     </form>
   </section>
   
@@ -44,5 +44,6 @@
     dataMaxima = dataMaxima.toISOString().slice(0, 16);
     document.getElementById("calendario").setAttribute("max", dataMaxima);
   </script>
-    
+
+
 {% endblock %}

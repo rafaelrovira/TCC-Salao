@@ -1,5 +1,6 @@
 from flask import Flask, redirect, render_template, url_for, request
 import flask_login
+from flask_mail import Message, Mail
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
@@ -23,6 +24,17 @@ bcrypt = Bcrypt(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///salao.db'
 app.config['SECRET_KEY'] = "uma chave super secreta"
+
+#config e-mail
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'contato.salaobarbearia@gmail.com'
+app.config['MAIL_DEFAULT_SENDER'] = 'contato.salaobarbearia@gmail.com'
+app.config['MAIL_PASSWORD'] = 'obphdvlonygiaqsu'
+
+mail = Mail(app)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -99,6 +111,13 @@ class DeleteForm(FlaskForm):
     email = StringField(validators=[InputRequired()], render_kw={"placeholder": "E-mail"})
     submit = SubmitField("Deletar")
 
+#Functions
+
+def enviar_email(destinatario, assunto, corpo):
+    msg = Message(assunto, recipients=[destinatario])
+    msg.body = corpo
+    mail.send(msg)
+
 
 # Rotas
 @app.route('/')
@@ -154,9 +173,22 @@ def agendar_servico():
         data = data.replace("T"," ")
         data = data.replace("-","/")
         datetime_object = datetime.strptime(data, '%Y/%m/%d %H:%M')
-
         novo_agendamento = agend.adicionar_agendamento(current_user.id, username, email, telefone, datetime_object, nome_servico)
-    
+        
+        #notificação e-mail
+        if novo_agendamento:
+            assunto = "Confirmação de Agendamento"
+            corpo = f"Olá {username}, o seu agendamento para o serviço {nome_servico} foi marcado para {datetime_object}."
+            enviar_email(email, assunto, corpo)
+            
+            # Adicione a mensagem de confirmação após agendamento
+            return f"""
+            <script>
+                alert("Agendamento realizado com sucesso !");
+            </script>
+            """
+
+            
     if current_user.level == "admin":
         return render_template('agendar_servico_admin.html')
     else:
