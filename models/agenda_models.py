@@ -1,5 +1,5 @@
 def adicionar_agendamento(user_id ,username, email, telefone, data, servico):
-    from app_server import Agenda, db
+    from app import Agenda, db
     novo_agendamento = Agenda(user_id=user_id, username=username, email=email, telefone=telefone, data=data, servico=servico)
     db.session.add(novo_agendamento)
     db.session.commit()
@@ -8,7 +8,7 @@ def adicionar_agendamento(user_id ,username, email, telefone, data, servico):
 
 
 def excluir_agendamento(id_agendamento):
-    from app_server import Agenda, db
+    from app import Agenda, db
     agendamento = Agenda.query.filter_by(id=id_agendamento).first()
     if agendamento:
         db.session.delete(agendamento)

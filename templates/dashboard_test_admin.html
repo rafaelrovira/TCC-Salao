@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>Dashboard Dalma</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="static/simplebar.css">
+    <link rel="stylesheet" href="static/simplebar.css">
+    <link href="static/style_dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
+    <link href="static/examples.css" rel="stylesheet">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+    
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      // Shared ID
+      gtag('config', 'UA-118965717-3');
+      // Bootstrap ID
+      gtag('config', 'UA-118965717-5');
+    </script>
+
+  </head>
+  <body>
+
+    <!-- INICIO DA NAVBAR-->
+    <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+      <div class="sidebar-brand d-none d-md-flex">
+      </div>
+      <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+        <li class="nav-item"><a class="nav-link" href="/dashboard">
+            <svg class="nav-icon">
+
+            </svg> Dashboard<span class="badge badge-sm bg-info ms-auto"></span></a></li>
+        <li class="nav-title">Administração</li>
+        <li class="nav-item"><a class="nav-link" href="/register_admin">
+            <svg class="nav-icon">
+            </svg>Cadastrar Administrador</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="/deletar_user">
+          <svg class="nav-icon">
+
+          </svg> Deletar usuário</a></li>
+
+      <li class="nav-item"><a class="nav-link" href="/usuarios">
+        <svg class="nav-icon">
+
+        </svg> Lista de usuários</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="/agendamentos">
+          <svg class="nav-icon">
+            </svg>Agendamentos</a>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="/agendamentos_dia">
+            <svg class="nav-icon">
+              </svg>Agendamentos do dia</a>
+            </li>
+
+        <li class="nav-title">Cliente</li>
+
+        <li class="nav-item"><a class="nav-link" href="/perfil">
+          <svg class="nav-icon">
+
+          </svg> Perfil</a></li>
+
+          <li class="nav-item"><a class="nav-link" href="/register_client">
+            <svg class="nav-icon">
+
+            </svg> Cadastrar Usuário</a></li>
+
+            <li class="nav-item"><a class="nav-link" href="/agendar_servico">
+              <svg class="nav-icon">
+
+              </svg> Agendar Serviço</a></li>
+              
+              <li class="nav-item"><a class="nav-link" href="/agendamentos">
+              <svg class="nav-icon">
+
+                </svg> Minha Agenda</a></li>
+
+          </li>
+      </ul>
+      <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+    </div>
+
+<!--FINAL DA NAVBAR-->
+
+    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+      <header class="header header-sticky mb-4">
+        <div class="container-fluid">
+          <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+            <svg class="icon icon-lg">
+
+            </svg>
+          </button><a class="header-brand d-md-none" href="#">
+            <svg width="118" height="46" alt="CoreUI Logo">
+
+            </svg></a>
+          <ul class="header-nav d-none d-md-flex">
+            <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+          </ul>
+          <ul class="header-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#">
+                <svg class="icon icon-lg">
+
+                </svg></a></li>
+            <li class="nav-item"><a class="nav-link" href="#">
+                <svg class="icon icon-lg">
+
+                </svg></a></li>
+            <li class="nav-item"><a class="nav-link" href="#">
+                <svg class="icon icon-lg">
+
+                </svg></a></li>
+          </ul>
+          <ul class="header-nav ms-3">
+            <li class="nav-item dropdown">
+              {% if username %}
+              <p>Bem-vindo {{ username }}</p>
+              {% endif %}
+              <a class="nav-link py-0" data-coreui-toggle="dropdown" 
+              href="/logout" role="button" aria-haspopup="true" 
+              aria-expanded="false">Log-out</a>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end pt-0">
+                <div class="dropdown-header bg-light py-2">
+                  <div class="fw-semibold">Account</div>
+                </div><a class="dropdown-item" href="#">
+                  <svg class="icon me-2">
+
+                  </svg> Updates<span class="badge badge-sm bg-info ms-2">42</span></a><a class="dropdown-item" href="#">
+                  <svg class="icon me-2">
+
+                  </svg> Messages<span class="badge badge-sm bg-success ms-2">42</span></a><a class="dropdown-item" href="#">
+                  <svg class="icon me-2">
+
+                  </svg> Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a><a class="dropdown-item" href="#">
+                  <svg class="icon me-2">
+
+                  </svg> Comments<span class="badge badge-sm bg-warning ms-2">42</span></a>
+                <div class="dropdown-header bg-light py-2">
+                  <div class="fw-semibold">Settings</div>
+                </div><a class="dropdown-item" href="#">
+                  <svg class="icon me-2">
+
+                  </svg> Profile</a><a class="dropdown-item" href="#">
+                  <svg class="icon me-2">
+
+                  </svg> Settings</a><a class="dropdown-item" href="#">
+                  <svg class="icon me-2">
+
+                  </svg> Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a class="dropdown-item" href="#">
+                  <svg class="icon me-2">
+  
+                  </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
+                  <svg class="icon me-2">
+
+                  </svg> Lock Account</a><a class="dropdown-item" href="#">
+                  <svg class="icon me-2">
+
+                  </svg> Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="header-divider"></div>
+        <div class="container-fluid">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-0 ms-2">
+              <li class="breadcrumb-item">
+                <!-- if breadcrumb is single--><span>Home</span>
+              </li>
+              <li class="breadcrumb-item active"><span>Dashboard</span></li>
+            </ol>
+          </nav>
+        </div>
+      </header>
+      <div class="body flex-grow-1 px-3">
+        <div class="container-lg">
+          <div class="row">
+            <div class="col-sm-6 col-lg-3">
+              <div class="card mb-4 text-white bg-primary">
+                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fs-4 fw-semibold">57<span class="fs-6 fw-normal"></span></div>
+                    <div>Agendamentos TOTAIS</div>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <svg class="icon">
+
+                      </svg>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+                  </div>
+                </div>
+                <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+                  <canvas class="chart" id="card-chart1" height="70"></canvas>
+                </div>
+              </div>
+            </div>
+            <!-- /.col-->
+            <div class="col-sm-6 col-lg-3">
+              <div class="card mb-4 text-white bg-info">
+                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fs-4 fw-semibold">R$6.200<span class="fs-6 fw-normal"></span></div>
+                    <div>Média BRUTA em R$</div>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <svg class="icon">
+                      </svg>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+                  </div>
+                </div>
+                <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+                  <canvas class="chart" id="card-chart2" height="70"></canvas>
+                </div>
+              </div>
+            </div>
+            <!-- /.col-->
+            <div class="col-sm-6 col-lg-3">
+              <div class="card mb-4 text-white bg-warning">
+                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fs-4 fw-semibold">2.49% <span class="fs-6 fw-normal"></span></div>
+                    <div>Taxa de cancelamento</div>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <svg class="icon">
+
+                      </svg>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+                  </div>
+                </div>
+                <div class="c-chart-wrapper mt-3" style="height:70px;">
+                  <canvas class="chart" id="card-chart3" height="70"></canvas>
+                </div>
+              </div>
+            </div>
+            <!-- /.col-->
+            <div class="col-sm-6 col-lg-3">
+              <div class="card mb-4 text-white bg-danger">
+                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fs-4 fw-semibold">20<span class="fs-6 fw-normal"></span></div>
+                    <div>Agendamentos MENSAIS</div>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <svg class="icon">
+                       
+                      </svg>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+                  </div>
+                </div>
+                <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+                  <canvas class="chart" id="card-chart4" height="70"></canvas>
+                </div>
+              </div>
+            </div>
+            <!-- /.col-->
+          </div>
+          <!-- /.row-->
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <h4 class="card-title mb-0">Traffic</h4>
+                  <div class="small text-medium-emphasis">January - July 2022</div>
+                </div>
+                <div class="btn-toolbar d-none d-md-block" role="toolbar" aria-label="Toolbar with buttons">
+                  <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
+                    <input class="btn-check" id="option1" type="radio" name="options" autocomplete="off">
+                    <label class="btn btn-outline-secondary"> Day</label>
+                    <input class="btn-check" id="option2" type="radio" name="options" autocomplete="off" checked="">
+                    <label class="btn btn-outline-secondary active"> Month</label>
+                    <input class="btn-check" id="option3" type="radio" name="options" autocomplete="off">
+                    <label class="btn btn-outline-secondary"> Year</label>
+                  </div>
+                  <button class="btn btn-primary" type="button">
+                    <svg class="icon">
+
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
+                <canvas class="chart" id="main-chart" height="300"></canvas>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row row-cols-1 row-cols-md-5 text-center">
+                <div class="col mb-sm-2 mb-0">
+                  <div class="text-medium-emphasis">Visits</div>
+                  <div class="fw-semibold">29.703 Users (40%)</div>
+                  <div class="progress progress-thin mt-2">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="col mb-sm-2 mb-0">
+                  <div class="text-medium-emphasis">Unique</div>
+                  <div class="fw-semibold">24.093 Users (20%)</div>
+                  <div class="progress progress-thin mt-2">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="col mb-sm-2 mb-0">
+                  <div class="text-medium-emphasis">Pageviews</div>
+                  <div class="fw-semibold">78.706 Views (60%)</div>
+                  <div class="progress progress-thin mt-2">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="col mb-sm-2 mb-0">
+                  <div class="text-medium-emphasis">New Users</div>
+                  <div class="fw-semibold">22.123 Users (80%)</div>
+                  <div class="progress progress-thin mt-2">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="col mb-sm-2 mb-0">
+                  <div class="text-medium-emphasis">Bounce Rate</div>
+                  <div class="fw-semibold">40.15%</div>
+                  <div class="progress progress-thin mt-2">
+                    <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card.mb-4-->
+          <div class="row">
+            <div class="col-sm-6 col-lg-4">
+              <div class="card mb-4" style="--cui-card-cap-bg: #3b5998">
+                <div class="card-header position-relative d-flex justify-content-center align-items-center">
+                  <svg class="icon icon-3xl text-white my-4">
+
+                  </svg>
+                  <div class="chart-wrapper position-absolute top-0 start-0 w-100 h-100">
+                    <canvas id="social-box-chart-1" height="90"></canvas>
+                  </div>
+                </div>
+                <div class="card-body row text-center">
+                  <div class="col">
+                    <div class="fs-5 fw-semibold">89k</div>
+                    <div class="text-uppercase text-medium-emphasis small">friends</div>
+                  </div>
+                  <div class="vr"></div>
+                  <div class="col">
+                    <div class="fs-5 fw-semibold">459</div>
+                    <div class="text-uppercase text-medium-emphasis small">feeds</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.col-->
+            <div class="col-sm-6 col-lg-4">
+              <div class="card mb-4" style="--cui-card-cap-bg: #00aced">
+                <div class="card-header position-relative d-flex justify-content-center align-items-center">
+                  <svg class="icon icon-3xl text-white my-4">
+
+                  </svg>
+                  <div class="chart-wrapper position-absolute top-0 start-0 w-100 h-100">
+                    <canvas id="social-box-chart-2" height="90"></canvas>
+                  </div>
+                </div>
+                <div class="card-body row text-center">
+                  <div class="col">
+                    <div class="fs-5 fw-semibold">973k</div>
+                    <div class="text-uppercase text-medium-emphasis small">followers</div>
+                  </div>
+                  <div class="vr"></div>
+                  <div class="col">
+                    <div class="fs-5 fw-semibold">1.792</div>
+                    <div class="text-uppercase text-medium-emphasis small">tweets</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.col-->
+            <div class="col-sm-6 col-lg-4">
+              <div class="card mb-4" style="--cui-card-cap-bg: #4875b4">
+                <div class="card-header position-relative d-flex justify-content-center align-items-center">
+                  <svg class="icon icon-3xl text-white my-4">
+
+                  </svg>
+                  <div class="chart-wrapper position-absolute top-0 start-0 w-100 h-100">
+                    <canvas id="social-box-chart-3" height="90"></canvas>
+                  </div>
+                </div>
+                <div class="card-body row text-center">
+                  <div class="col">
+                    <div class="fs-5 fw-semibold">500+</div>
+                    <div class="text-uppercase text-medium-emphasis small">contacts</div>
+                  </div>
+                  <div class="vr"></div>
+                  <div class="col">
+                    <div class="fs-5 fw-semibold">292</div>
+                    <div class="text-uppercase text-medium-emphasis small">feeds</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>

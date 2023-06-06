@@ -1,0 +1,529 @@
+<!doctype html>
+<html class="no-js" lang="pt-br">
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Barbearia Dalma </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/icon.png">
+    
+
+	<!-- CSS here -->
+	<link rel="stylesheet" href="/static/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/owl.carousel.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/slicknav.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/flaticon.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/gijgo.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/animate.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/animated-headline.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/magnific-popup.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/fontawesome-all.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/themify-icons.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/slick.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/nice-select.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/style.css" crossorigin="anonymous">
+    {% endblock %}
+</head>
+<body>
+    <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="/static/img/logo/loder.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!--? Header Start -->
+        <div class="header-area header-transparent pt-20">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-2 col-lg-2 col-md-1">
+                            <div class="logo3">
+                                <a href=""><img src="/static/img/logo/logo.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-10">
+                            <div class="menu-main d-flex align-items-center justify-content-end">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li class="active"><a href="">Inicio</a></li>
+                                            <li><a href="/about">Sobre</a></li>
+                                            <li><a href="/services">Serviços</a></li>
+                                            <li><a href="/contato">Contato</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                    <a href="{{url_for('login')}}" class="btn header-btn" >Login</a><br> 
+                                </div>
+                            </div>
+                        </div>   
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+        <!--? slider Area Start-->
+        <div class="slider-area position-relative fix">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height d-flex align-items-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-9 col-md-11 col-sm-10">
+                                <div class="hero__caption">
+                                    <span data-animation="fadeInUp" data-delay="0.2s">Dalma Barbearia</span>
+                                    <h1 data-animation="fadeInUp" data-delay="0.5s">Nosso estilo de cabelo faz você elegante</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+                <!-- Single Slider -->
+                <div class="single-slider slider-height d-flex align-items-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-9 col-md-11 col-sm-10">
+                                <div class="hero__caption">
+                                    <span data-animation="fadeInUp" data-delay="0.2s">Dalma Barbearia</span>
+                                    <h1 data-animation="fadeInUp" data-delay="0.5s">Nosso estilo de cabelo faz você elegante</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+            </div>
+            <!-- stroke Text -->
+            <div class="stock-text">
+                <h2>Ganhe confiança</h2>
+                <h2>Ganhe confiança</h2>
+            </div>
+             <!-- Arrow -->
+             <div class="thumb-content-box">
+                <div class="thumb-content">
+                    <h3>Realize um agendamento agora</h3>
+                    <a href="/login"> <i class="fas fa-long-arrow-alt-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- slider Area End-->
+        <!--? About Area Start -->
+        <section class="about-area section-padding30 position-relative">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-11">
+                        <!-- about-img -->
+                        <div class="about-img ">
+                            <img src="/static/img/gallery/about.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="about-caption">
+                            <!-- Section Tittle -->
+                            <div class="section-tittle section-tittle3 mb-35">
+                                <span>Sobre nossa empresa</span>
+                                <h2>12 Anos de experiência com cortes de cabelos e barbas!</h2>
+                            </div>
+                            <p class="mb-30 pera-bottom">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum </p>
+                            <p class="pera-top mb-50">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum </p>
+                            <img src="/static/img/gallery/signature.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- About Shape -->
+            <div class="about-shape">
+                <img src="/static/img/gallery/about-shape.png" alt="">
+            </div>
+        </section>
+        <!-- About-2 Area End -->
+        <!--? Services Area Start -->
+        <section class="service-area pb-170">
+            <div class="container">
+                <!-- Section Tittle -->
+                <div class="row d-flex justify-content-center">
+                    <div class="col-xl-7 col-lg-8 col-md-11 col-sm-11">
+                        <div class="section-tittle text-center mb-90">
+                            <span>Serviços Profissionais</span>
+                            <h2>Nossos melhores serviços que oferecemos para você</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- Section caption -->
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="services-caption text-center mb-30">
+                            <div class="service-icon">
+                                <i class="flaticon"></i>
+                            </div> 
+                            <div class="service-cap">
+                                <h4><a href="#">Corte de Cabelo</a></h4>
+                                <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="services-caption active text-center mb-30">
+                            <div class="service-icon">
+                                <i class=""></i>
+                            </div> 
+                            <div class="service-cap">
+                                <h4><a href="#">Barba</a></h4>
+                                <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="services-caption text-center mb-30">
+                            <div class="service-icon">
+                                <i class=""></i>
+                            </div> 
+                            <div class="service-cap">
+                                <h4><a href="#">Coloração</a></h4>
+                                <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Services Area End -->
+        <!--? Team Start -->
+        <div class="team-area pb-180">
+            <div class="container">
+                <!-- Section Tittle -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-8 col-lg-8 col-md-11 col-sm-11">
+                        <div class="section-tittle text-center mb-100">
+                            <span>Nosso time de profissionais</span>
+                            <h2>Nosso melhor corte de cabelo é feito pra você</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row team-active dot-style">
+                    <!-- single Tem -->
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                        <div class="single-team mb-80 text-center">
+                            <div class="team-img">
+                                <img src="/static/img/gallery/team1.png" alt="">
+                            </div>
+                            <div class="team-caption">
+                                <span>Barbeiro</span>
+                                <h3><a href="#">Teste 1</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                        <div class="single-team mb-80 text-center">
+                            <div class="team-img">
+                                <img src="/static/img/gallery/team2.png" alt="">
+                            </div>
+                            <div class="team-caption">
+                                <span>Especialista em coloração</span>
+                                <h3><a href="#">Teste 2</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                        <div class="single-team mb-80 text-center">
+                            <div class="team-img">
+                                <img src="/static/img/gallery/team3.png" alt="">
+                            </div>
+                            <div class="team-caption">
+                                <span>Cabeleireiro</span>
+                                <h3><a href="#">Teste 3</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                        <div class="single-team mb-80 text-center">
+                            <div class="team-img">
+                                <img src="/static/img/gallery/team2.png" alt="">
+                            </div>
+                            <div class="team-caption">
+                                <span>Master Barber</span>
+                                <h3><a href="#">Edgar P. Mathis</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Team End -->
+        <!-- Best Pricing Area Start -->
+        <div class="best-pricing section-padding2 position-relative">
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="section-tittle mb-50">
+                            <span>Nossos melhores preços</span>
+                            <h2>Nós temos os melhores preços<br> da cidade !</h2>
+                        </div>
+                        <!-- Pricing  -->
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="pricing-list">
+                                    <ul>
+                                        <li>Corte. . . . . . . . . . . . . . . . . . . . . . . . . . . . <span>R$25</span></li>
+                                        <li>Corte + Coloração. . . . . . . . . . . . . . . . . . . <span>R$65</span></li>
+                                        <li>Barba. . . . . . . . . . . . . . . .<span>R$25</span></li>
+                                        <li> Corte + Barba. . . . . . . . . . . . . . . .<span>R$50</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- pricing img -->
+            <div class="pricing-img">
+                <img class="pricing-img1" src="/static/img/gallery/pricing1.png" alt="">
+                <img class="pricing-img2" src="/static/img/gallery/pricing2.png" alt="">
+            </div>
+        </div>
+        <!-- Best Pricing Area End -->
+        <!--? Gallery Area Start -->
+        <div class="gallery-area section-padding30">
+            <div class="container">
+                <!-- Section Tittle -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-7 col-md-9 col-sm-10">
+                        <div class="section-tittle text-center mb-100">
+                            <span>Nossa galeria de imagens</span>
+                            <h2>Algumas fotos da barbearia</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="box snake mb-30">
+                            <div class="gallery-img " style="background-image: url(/static/img/gallery/gallery1.png);"></div>
+                            <div class="overlay"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-6 col-sm-6">
+                        <div class="box snake mb-30">
+                            <div class="gallery-img " style="background-image: url(/static/img/gallery/gallery2.png);"></div>
+                            <div class="overlay"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-6 col-sm-6">
+                        <div class="box snake mb-30">
+                            <div class="gallery-img " style="background-image: url(/static/img/gallery/gallery3.png);"></div>
+                            <div class="overlay"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="box snake mb-30">
+                            <div class="gallery-img " style="background-image: url(/static/img/gallery/gallery4.png);"></div>
+                            <div class="overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery Area End -->
+        <!-- Cut Details Start -->
+        <div class="cut-details section-bg section-padding2" data-background="/static/img/gallery/section_bg02.png">
+           <div class="container">
+            <div class="cut-active dot-style">
+                <div class="single-cut">
+                    <div class="cut-icon mb-20">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" height="50px">
+                            <image  x="0px" y="0px" width="50px" height="50px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBQ4MDDIERuyfAAADc0lEQVRYw7WYXWxTZRjH/+e0ikhh7QgfiYJZZ7bhBC6mU0LQ6DBADNGYLEaNJGpi4jTEQczYjQG8EL2ThAUTvTRGBwmECyBA+XRKHJpUL1yXFseWbe1ixgZCSAg/Lmo9bXe+up0+/5vT//Oc9/ee8z7nqwbyGbVqUL2iiuiurmtMKf2tu/52DXtW1OhVtekFRZTSkCY1rYcV0VI1arl+VULH9JvnGLhpHT/wD728z+M22QVs5ksyJOlkgds4zqlWEgzSQQ3uEzF4ju8ZpZsHK4NEOcgo7xL2AFhq4CgDtPmHPEWGg0R9AwrayjD77CY2s/RtsrRXDMhrCSc5wyIvyE6GaJ4lQogQB/idZW6QjxlkxRwQee0lWdoupec0a9uqlauHM8VrYyXqyLIuEIQIcYLPZ0JC/EJnQIh8C4xYDV0wO0hgBAgRm0kxrxhSS46mQBFCHKa7GLKbbwNHiCayRAqQCBMBdVW5etlRgGzjWFUQYgMDGHnIaZfbSIxTWNFP3MGzl0GaViQWMVXoAhv9SGn0O3hO+oLPkHiZ4y5FacrD3nPSJn5GptbrJ7+P+VnERa3VA6bWKFlFyC0NqdFUXOkqQqS06kwt1XhVIeNaZiqqSZeS0z4955jWwrBCuudSskvSRklSTDEXzznuaJ74l/m+rt4Wm3Zt8WxhcYAOU5Na7OuwJ3165RHTlKlhrfQFaZckXfH0ymOFhsNKaZX6POYSU7v2SZJ6XTz7aFJKbKfH9ZxuLLp9pIk5evaKM4ZMndXzrjOJ/7+V0Uv/rYKdZx9tOi8Jg3HqPY+kn66iGdt59jrMe/nnyX52V+mhVcsNFuchLWQqeH+vRB9xCBVeJC7xZhUQYTKstyBb+JNQ4JB3OJvfKhgJPggYEeEaz5ZCmpgI4H2+WD18Xdi2zG4uBbj8r5GxvtUs2+AE+wNCrCZHq/W7OBUlya4AEI9yjbeKnfL0VbrmiIgzyCelXnnJI/zBV3NYm6cZoaPcnVkW4yQXZtVpBp1keWVmxq7YpIsc2ys8nmbOc5k6u5zTLqtIkOQNn/eBer4hx4eY9nm3XbdwkTSfun67PEQ7R8ixh1rnKsPj/64WbdPrmtI5XdGAruqGrmu+IlquBj2hDXpGl/WdDumm2yBeEEky9KRe1Go16jFFFNVt3dSEUvpLfbqgae8B7gNdcvnkrRzZ4gAAAABJRU5ErkJggg==" />
+                        </svg>
+                    </div>
+                    <div class="cut-descriptions">
+                        <p>Vestibulum varius, velit sit amet tempor efficitur, ligula mi lacinia libero, vehicula dui nisi eget purus. Integer cursus nibh non risus maximus dictum. Suspendis.</p>
+                        <span>JONT NICOLIN KOOK</span>
+                    </div>
+                </div>
+                <div class="single-cut">
+                    <div class="cut-icon mb-20">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" height="50px">
+                            <image  x="0px" y="0px" width="50px" height="50px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBQ4MDDIERuyfAAADc0lEQVRYw7WYXWxTZRjH/+e0ikhh7QgfiYJZZ7bhBC6mU0LQ6DBADNGYLEaNJGpi4jTEQczYjQG8EL2ThAUTvTRGBwmECyBA+XRKHJpUL1yXFseWbe1ixgZCSAg/Lmo9bXe+up0+/5vT//Oc9/ee8z7nqwbyGbVqUL2iiuiurmtMKf2tu/52DXtW1OhVtekFRZTSkCY1rYcV0VI1arl+VULH9JvnGLhpHT/wD728z+M22QVs5ksyJOlkgds4zqlWEgzSQQ3uEzF4ju8ZpZsHK4NEOcgo7xL2AFhq4CgDtPmHPEWGg0R9AwrayjD77CY2s/RtsrRXDMhrCSc5wyIvyE6GaJ4lQogQB/idZW6QjxlkxRwQee0lWdoupec0a9uqlauHM8VrYyXqyLIuEIQIcYLPZ0JC/EJnQIh8C4xYDV0wO0hgBAgRm0kxrxhSS46mQBFCHKa7GLKbbwNHiCayRAqQCBMBdVW5etlRgGzjWFUQYgMDGHnIaZfbSIxTWNFP3MGzl0GaViQWMVXoAhv9SGn0O3hO+oLPkHiZ4y5FacrD3nPSJn5GptbrJ7+P+VnERa3VA6bWKFlFyC0NqdFUXOkqQqS06kwt1XhVIeNaZiqqSZeS0z4955jWwrBCuudSskvSRklSTDEXzznuaJ74l/m+rt4Wm3Zt8WxhcYAOU5Na7OuwJ3165RHTlKlhrfQFaZckXfH0ymOFhsNKaZX6POYSU7v2SZJ6XTz7aFJKbKfH9ZxuLLp9pIk5evaKM4ZMndXzrjOJ/7+V0Uv/rYKdZx9tOi8Jg3HqPY+kn66iGdt59jrMe/nnyX52V+mhVcsNFuchLWQqeH+vRB9xCBVeJC7xZhUQYTKstyBb+JNQ4JB3OJvfKhgJPggYEeEaz5ZCmpgI4H2+WD18Xdi2zG4uBbj8r5GxvtUs2+AE+wNCrCZHq/W7OBUlya4AEI9yjbeKnfL0VbrmiIgzyCelXnnJI/zBV3NYm6cZoaPcnVkW4yQXZtVpBp1keWVmxq7YpIsc2ys8nmbOc5k6u5zTLqtIkOQNn/eBer4hx4eY9nm3XbdwkTSfun67PEQ7R8ixh1rnKsPj/64WbdPrmtI5XdGAruqGrmu+IlquBj2hDXpGl/WdDumm2yBeEEky9KRe1Go16jFFFNVt3dSEUvpLfbqgae8B7gNdcvnkrRzZ4gAAAABJRU5ErkJggg==" />
+                        </svg>
+                    </div>
+                    <div class="cut-descriptions">
+                        <p>Vestibulum varius, velit sit amet tempor efficitur, ligula mi lacinia libero, vehicula dui nisi eget purus. Integer cursus nibh non risus maximus dictum. Suspendis.</p>
+                        <span>JONT NICOLIN KOOK</span>
+                    </div>
+                </div>
+                <div class="single-cut">
+                    <div class="cut-icon mb-20">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" height="50px">
+                            <image  x="0px" y="0px" width="50px" height="50px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBQ4MDDIERuyfAAADc0lEQVRYw7WYXWxTZRjH/+e0ikhh7QgfiYJZZ7bhBC6mU0LQ6DBADNGYLEaNJGpi4jTEQczYjQG8EL2ThAUTvTRGBwmECyBA+XRKHJpUL1yXFseWbe1ixgZCSAg/Lmo9bXe+up0+/5vT//Oc9/ee8z7nqwbyGbVqUL2iiuiurmtMKf2tu/52DXtW1OhVtekFRZTSkCY1rYcV0VI1arl+VULH9JvnGLhpHT/wD728z+M22QVs5ksyJOlkgds4zqlWEgzSQQ3uEzF4ju8ZpZsHK4NEOcgo7xL2AFhq4CgDtPmHPEWGg0R9AwrayjD77CY2s/RtsrRXDMhrCSc5wyIvyE6GaJ4lQogQB/idZW6QjxlkxRwQee0lWdoupec0a9uqlauHM8VrYyXqyLIuEIQIcYLPZ0JC/EJnQIh8C4xYDV0wO0hgBAgRm0kxrxhSS46mQBFCHKa7GLKbbwNHiCayRAqQCBMBdVW5etlRgGzjWFUQYgMDGHnIaZfbSIxTWNFP3MGzl0GaViQWMVXoAhv9SGn0O3hO+oLPkHiZ4y5FacrD3nPSJn5GptbrJ7+P+VnERa3VA6bWKFlFyC0NqdFUXOkqQqS06kwt1XhVIeNaZiqqSZeS0z4955jWwrBCuudSskvSRklSTDEXzznuaJ74l/m+rt4Wm3Zt8WxhcYAOU5Na7OuwJ3165RHTlKlhrfQFaZckXfH0ymOFhsNKaZX6POYSU7v2SZJ6XTz7aFJKbKfH9ZxuLLp9pIk5evaKM4ZMndXzrjOJ/7+V0Uv/rYKdZx9tOi8Jg3HqPY+kn66iGdt59jrMe/nnyX52V+mhVcsNFuchLWQqeH+vRB9xCBVeJC7xZhUQYTKstyBb+JNQ4JB3OJvfKhgJPggYEeEaz5ZCmpgI4H2+WD18Xdi2zG4uBbj8r5GxvtUs2+AE+wNCrCZHq/W7OBUlya4AEI9yjbeKnfL0VbrmiIgzyCelXnnJI/zBV3NYm6cZoaPcnVkW4yQXZtVpBp1keWVmxq7YpIsc2ys8nmbOc5k6u5zTLqtIkOQNn/eBer4hx4eY9nm3XbdwkTSfun67PEQ7R8ixh1rnKsPj/64WbdPrmtI5XdGAruqGrmu+IlquBj2hDXpGl/WdDumm2yBeEEky9KRe1Go16jFFFNVt3dSEUvpLfbqgae8B7gNdcvnkrRzZ4gAAAABJRU5ErkJggg==" />
+                        </svg>
+                    </div>
+                    <div class="cut-descriptions">
+                        <p>Vestibulum varius, velit sit amet tempor efficitur, ligula mi lacinia libero, vehicula dui nisi eget purus. Integer cursus nibh non risus maximus dictum. Suspendis.</p>
+                        <span>JONT NICOLIN KOOK</span>
+                    </div>
+                </div>
+            </div>
+           </div>
+        </div>
+        <!-- Cut Details End -->
+    </main>
+    <footer>
+        <!--? Footer Start-->
+        <div class="footer-area section-bg" data-background="/static/img/gallery/footer_bg.png">
+            <div class="container">
+                <div class="footer-top footer-padding">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-xl-3 col-lg-4 col-md-5 col-sm-8">
+                            <div class="single-footer-caption mb-50">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="/static/img/logo/logo2_footer.png" alt=""></a>
+                                </div>
+                                <div class="footer-tittle">
+                                    <div class="footer-pera">
+                                        <p class="info1">Receba as novidades e as últimas noticias com um simples enter.</p>
+                                    </div>
+                                </div>
+                                <div class="footer-number">
+                                    <h4><span>+11 </span>1234 5678</h4>
+                                    <p>contato.salaobarbearia@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Teste Footer</h4>
+                                    <ul>
+                                        <li><a href="#">Avançado</a></li>
+                                        <li><a href="#">Management</a></li>
+                                        <li><a href="#">Corporativo</a></li>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Explore</h4>
+                                    <ul>
+                                        <li><a href="#">Cookies</a></li>
+                                        <li><a href="#">Sobre</a></li>
+                                        <li><a href="#">Licensas</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Location</h4>
+                                    <div class="footer-pera">
+                                        <p class="info1">Inscreva-se agora para receber novidades</p>
+                                    </div>
+                                </div>
+                                <!-- Form -->
+                                <div class="footer-form">
+                                    <div id="mc_embed_signup">
+                                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative mail_part" novalidate="true">
+                                            <input type="email" name="EMAIL" id="newsletter-form-email" placeholder=" Email Address " class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'">
+                                            <div class="form-icon">
+                                                <button type="submit" name="submit" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm">Enviar</button>
+                                            </div>
+                                            <div class="mt-10 info"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-xl-9 col-lg-8">
+                            <div class="footer-copy-right">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos os direitos reservados| Dalma Barbearia <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://trello.com/b/a7APmaP5/dalma-ageis" target="_blank">Dalma TCC</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4">
+                            <!-- Footer Social -->
+                            <div class="footer-social f-right">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    {% block body_final %}
+    <!-- Scroll Up -->
+    <div id="back-top" >
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+    <!-- JS here -->
+
+    <script src="/static/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="/static/js/jquery.slicknav.min.js"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="/static/js/wow.min.js"></script>
+    <script src="/static/js/animated.headline.js"></script>
+    <script src="/static/js/jquery.magnific-popup.js"></script>
+
+    <!-- Date Picker -->
+    <script src="/static/js/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="/static/js/jquery.nice-select.min.js"></script>
+    <script src="/static/js/jquery.sticky.js"></script>
+    
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="/static/js/jquery.counterup.min.js"></script>
+    <script src="/static/js/waypoints.min.js"></script>
+    <script src="/static/js/jquery.countdown.min.js"></script>
+    <script src="/static/js/hover-direction-snake.min.js"></script>
+
+    <!-- contact js -->
+    <script src="/static/js/contact.js"></script>
+    <script src="/static/js/jquery.form.js"></script>
+    <script src="/static/js/jquery.validate.min.js"></script>
+    <script src="/static/js/mail-script.js"></script>
+    <script src="/static/js/jquery.ajaxchimp.min.js"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="/static/js/plugins.js"></script>
+    <script src="/static/js/main.js"></script>
+    {% endblock %}
+    </body>
+    
+</html>

@@ -14,9 +14,6 @@ from datetime import date
 import models.user_models as usr
 import models.agenda_models as agend
 
-
-
-
 # Configs
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -79,11 +76,11 @@ db.create_all()
 
 # Classe para os formulários de usuário
 class RegisterForm(FlaskForm):
-    username = StringField(validators=[InputRequired(), Length(min=4, max=30)], render_kw={"placeholder": "Usuário"})
+    username = StringField(validators=[InputRequired(), Length(min=4, max=30)], render_kw={"placeholder": "Digite o nome de usuário"})
     password = PasswordField(validators=[InputRequired(), Length(min=4, max=80)], render_kw={"placeholder": "Senha"})
     email = StringField(validators=[InputRequired()], render_kw={"placeholder": "E-mail"})
     telefone = StringField(validators=[InputRequired()], render_kw={"placeholder": "Telefone"})
-    submit = SubmitField("Register")
+    submit = SubmitField("Cadastrar")
 
     def validate_username(self, username):
         existing_user_username = User.query.filter_by(
@@ -99,7 +96,7 @@ class LoginForm(FlaskForm):
         min=4, max=30)], render_kw={"placeholder": ""})
     password = PasswordField(validators=[InputRequired(), Length(
         min=4, max=80)], render_kw={"placeholder": ""})
-    submit = SubmitField("Login")
+    submit = SubmitField("Entrar")
 
 
 class ConsultaForm(FlaskForm):
@@ -121,8 +118,8 @@ def enviar_email(destinatario, assunto, corpo):
 
 # Rotas
 @app.route('/')
-def home():
-    return render_template('home.html')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -139,7 +136,6 @@ def login():
                 if user.level == "admin":
                     login_user(user)
                     return redirect(url_for('dashboard'))
-
         else:
             return("Usuário incorreto")
     return render_template('login.html', form=form)
@@ -149,11 +145,14 @@ def login():
 @login_required
 def dashboard():
 
+    user = flask_login.current_user
+    username = user.username
+
     if current_user.level == "client":
-        return render_template('dashboard.html')
+        return render_template('dashboard_test_client.html', username=username)
     
     if current_user.level == "admin":
-        return render_template('dashboard_admin.html')
+        return render_template('dashboard_test_admin.html', username=username)
 
 
 @app.route('/agendar_servico', methods=['GET', 'POST'])
@@ -181,18 +180,27 @@ def agendar_servico():
             corpo = f"Olá {username}, o seu agendamento para o serviço {nome_servico} foi marcado para {datetime_object}."
             enviar_email(email, assunto, corpo)
             
-            # Adicione a mensagem de confirmação após agendamento
-            return f"""
-            <script>
-                alert("Agendamento realizado com sucesso !");
-            </script>
-            """
+            # Adicione a mensagem na sessão do Flask
+            if current_user.level =="admin":
+                return f"""
+                <script>
+                    alert("Agendamento realizado com sucesso !");
+                </script>
+                """ + render_template('agendar_servico_admin_teste.html')
+            elif current_user.level == "client":
+                return f"""
+                <script>
+                    alert("Agendamento realizado com sucesso !");
+                </script>
+                """ + render_template('agendar_servico_client_teste.html')
 
             
     if current_user.level == "admin":
-        return render_template('agendar_servico_admin.html')
+        return render_template('agendar_servico_admin_teste.html')
+    elif current_user.level == "client":
+        return render_template('agendar_servico_client_teste.html')
     else:
-        return render_template('agendar_servico.html')
+        return render_template("register.html")
 
 
 @app.route('/register_client', methods=['GET', 'POST'])
@@ -214,6 +222,10 @@ def register():
 @app.route('/register_admin', methods=['GET', 'POST'])
 @login_required
 def admin_register(): 
+
+    user = flask_login.current_user
+    username = user.username
+
     #Validação pra ver se o usuário é admin
     user_level = current_user.level
     if user_level != "admin":
@@ -227,18 +239,22 @@ def admin_register():
         form_email = form.email.data
         form_telefone = form.telefone.data
         hashed_password = bcrypt.generate_password_hash(form_password)
-
+    
 
         # cria o admin
         try:
             if current_user.level == "admin":
                 new_admin = usr.adicionar_user(
                 form_name, hashed_password, form_email, form_telefone, level='admin')
-                return redirect(url_for('login'))
+                return f"""
+            <script>
+                alert("Administrador criado com sucesso !");
+            </script>
+            """ + render_template('register_admin_teste.html', form=form, username=username)
         except AttributeError:
             return("Acesso negado, faça login com um usuário administrador")
         
-    return render_template('register_admin.html', form=form)
+    return render_template('register_admin_teste.html', form=form, username=username)
 
 
 @app.route('/logout', methods=['GET', 'POST'])
@@ -248,14 +264,18 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route('/profile', methods=['GET', 'POST'])
+@app.route('/perfil', methods=['GET', 'POST'])
 @login_required
 def profile():
+
+    user = flask_login.current_user
+    username = user.username
+
     if current_user.level == "client":
-        return render_template('profile.html')
+        return render_template('profile_client_teste.html', username=username)
     
     if current_user.level == "admin":
-        return render_template('profile_admin.html')
+        return render_template('profile_admin_teste.html',username=username)
 
 
 @app.route('/consulta_user', methods=['GET', 'POST'])
@@ -281,6 +301,8 @@ def consultar_user():
 @app.route('/deletar_user', methods=['GET', 'POST'])
 @login_required
 def deletar_user():
+    user = flask_login.current_user
+    username = user.username
 
     if current_user.level == "admin":
         form_delete = DeleteForm()
@@ -289,28 +311,43 @@ def deletar_user():
             # verificar se o user é um administrador
             dados_user = usr.consultar_user(email)
             if dados_user.level == "admin":
-                return("Você não pode deletar outro administrador")
+                usr.deleta_user(email)
+                return f"""
+            <script>
+                alert("Usuário deletado com sucesso !");
+            </script>
+            """ + render_template('deletar_user_teste.html', form=form_delete, username = username)
+                
             else:
                 usr.deleta_user(email)
-                return("Usuário deletado com sucesso")
+                return f"""
+            <script>
+                alert("Usuário deletado com sucesso !");
+            </script>
+            """ + render_template('deletar_user_teste.html', form=form_delete, username = username)
     else:
         return("Você não tem permissão para deletar usuários.")
-    return render_template('deletar_user.html', form=form_delete)
+    return render_template('deletar_user_teste.html', form=form_delete, username = username)
 
 @app.route('/usuarios')
 @login_required
 def list_users():
+    user = flask_login.current_user
+    username = user.username
     if current_user.level == "client":
         return ("Você não tem permissão")
     
     if current_user.level == "admin":
         users = User.query.all()
-        return render_template('users.html', users=users)
+        return render_template('users_test.html', users=users, username=username)
 
 
 @app.route('/agendamentos_dia')
 @login_required
 def list_agendamentos_dia():
+
+    user = flask_login.current_user
+    username = user.username
 
     if current_user.level == "client":
         return ("Você não tem permissão")
@@ -319,27 +356,30 @@ def list_agendamentos_dia():
         users = User.query.all()
         hoje = datetime.today().strftime('%Y-%m-%d')
         agendamentos = Agenda.query.filter(Agenda.data >= datetime.combine(date.today(), datetime.min.time()), Agenda.data <= datetime.combine(date.today(), datetime.max.time())).all()
-        return render_template('agendamentos_dia.html', agendamentos=agendamentos)
+        return render_template('agendamentos_dia_teste.html', agendamentos=agendamentos, username=username)
 
 
 @app.route('/agendamentos')
 @login_required
 def list_agendamentos_total():
 
+    user = flask_login.current_user
+    username = user.username
+
     if current_user.level == "client":
         page = request.args.get('page', 1, type=int)
         per_page = request.args.get('per_page', 10, type=int)
         hoje = datetime.today().strftime('%Y-%m-%d')
         agendamentos = Agenda.query.filter_by(user_id=current_user.id).paginate(page=page, per_page=per_page)
-        return render_template('agendamentos_total_client.html', agendamentos=agendamentos)
+        return render_template('agendamentos_total_client_teste.html', agendamentos=agendamentos, username=username)
         
-
+ #como admin mostra todos os agendamentos
     if current_user.level == "admin":
         page = request.args.get('page', 1, type=int)
         per_page = request.args.get('per_page', 10, type=int)
         hoje = datetime.today().strftime('%Y-%m-%d')
         agendamentos = Agenda.query.paginate(page=page, per_page=per_page)
-        return render_template('agendamentos_total.html', agendamentos=agendamentos)
+        return render_template('agendamentos_total_admin_teste.html', agendamentos=agendamentos, username=username)
 
     
 @app.route('/deletar-agendamento/<int:id_agendamento>', methods=['DELETE'])
@@ -353,7 +393,20 @@ def deletar_agendamento(id_agendamento):
     else:
         return 'Agendamento não encontrado.', 404
 
+  
+@app.route('/about', methods=['GET'])
+def about():
+    return render_template('about.html')
 
+
+@app.route('/services', methods=['GET'])
+def services():
+    return render_template('servicos.html')
+
+
+@app.route('/contato', methods=['GET'])
+def contact():
+    return render_template('contact.html')
 
 # Main
 if __name__ == '__main__':

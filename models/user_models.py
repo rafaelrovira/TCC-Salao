@@ -1,4 +1,4 @@
-from app_server import User, db
+from app import User, db
 
 
 
@@ -44,7 +44,10 @@ def deleta_user(email):
         id = objeto.id
         user = User.query.get(id)
         if user.level == "admin":
-            return ("Não é possível deletar administrador(por enquanto)")
+            user.query.filter_by(id=id).delete()
+            db.session.commit()
+            print("Usuário deletado com sucesso")
+            return ("Usuário deletado com sucesso")
         else:
             user.query.filter_by(id=id).delete()
             db.session.commit()
